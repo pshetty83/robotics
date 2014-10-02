@@ -18,11 +18,14 @@ while True:
     print "Running Forward"
     BrickPi.MotorSpeed[PORT_A] = 100  #Set the speed of MotorA (-255 to 255)
     ontime1 = time.time()
+
+    print "Moving Right"
     while(time.time() - ontime1 < 0.5):
         BrickPi.MotorSpeed[PORT_B] = 75
         BrickPiUpdateValues()
         time.sleep(0.1)
 
+    print "Moving Left"
     ontime2 = time.time()
     while(time.time() - ontime2 < 0.5):
         BrickPi.MotorSpeed[PORT_B] = -75

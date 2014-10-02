@@ -56,10 +56,18 @@ function handleMessage(message) {
 	}
   else if (message == 'forward') 
   {
-    /*PythonShell.run('LEGO-Motor_Test_Stop.py', 
-                    function(err){ if(err) throw err;
-                                   console.log('forward finished');
-                                 });*/
+    var pyshell = new PythonShell('forward.py');
+
+    pyshell.on('message', function (message) {
+    // received a message sent from the Python script (a simple "print" statement)
+      console.log(message);
+    });
+
+    // end the input stream and allow the process to exit
+    pyshell.end(function (err) {
+      if (err) throw err;
+      console.log('finished');
+    });
   } 
   else if (message == 'left') 
   {
